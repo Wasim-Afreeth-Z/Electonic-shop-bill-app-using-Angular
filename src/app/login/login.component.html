@@ -1,0 +1,72 @@
+<section>
+    <div class="login flex justify-between">
+        <div class="left-side px-24 pt-20 flex flex-col items-center">
+            <h1 class="left-topic text-5xl font-semibold text-center mb-5">Welcome back!</h1>
+            <p class="left-para1 text-sm w-[350px] text-center">Simplify your workflow and boost your productivity with
+                <span class="font-semibold">Bill App</span>. Get
+                started fot free
+            </p>
+
+            <form class="flex flex-col mt-10 mb-8 gap-y-2.5" [formGroup]="loginForm" (ngSubmit)="loginAndsubmit()">
+                <input
+                    class="border-[1px] border-gray-500 outline-none px-5 py-2.5 rounded-full w-[420px] placeholder:text-sm"
+                    type="text" type="text" placeholder="Username" id="userName" name="userName"
+                    formControlName="userName">
+                @if ((isSubmitted && loginForm.get('userName')?.invalid)|| loginForm.get('userName')?.touched) {
+                @if(loginForm.get('userName')?.hasError('required')){
+                <p class="text-red-500 text-sm ml-5">Enter the Username !</p>
+                }
+                @if(loginForm.get('userName')?.hasError('userName')){
+                <p class="text-red-500 text-sm ml-5">Enter correct Format Username !</p>
+                }
+                @if(loginForm.get('userName')?.hasError('noSpaceAllowed')){
+                <p class="text-red-500 text-sm ml-5">Space not allowed</p>
+                }
+                }
+                <div class="relative">
+                    <input
+                        class="border-[1px] outline-none border-gray-500 px-5 py-2.5 rounded-full w-[420px] placeholder:text-sm"
+                        [type]="changetype?'password':'text'" placeholder="Password" id="password" name="password"
+                        formControlName="password">
+                    <span class="absolute top-[8px] right-[20px] text-2xl text-gray-500" (click)="viewPassword()"><i
+                            class={{eyehide}}></i></span>
+                </div>
+                @if ((isSubmitted && loginForm.get('password')?.invalid)|| loginForm.get('password')?.touched) {
+                @if(loginForm.get('password')?.hasError('required')){
+                <p class="text-red-500 text-sm ml-5">Enter the Password !</p>
+                }
+                }
+                <p class="forgot text-sm font-semibold text-end mt-1 mr-2">Forgot Password?</p>
+
+                <button [disabled]="loginForm.value.userName?.length<=0 || loginForm.value.password?.length<=0"
+                    class="disabled:bg-zinc-400 bg-black text-white rounded-full text-sm py-3 mt-4 hover:bg-zinc-700 ">
+                    Login</button>
+            </form>
+
+            <div class="line flex items-center ">
+                <div class="w-[140px] h-[2px] bg-gray-300"></div>
+                <p class="mx-3 text-sm">or continue with</p>
+                <div class="w-[140px] h-[2px] bg-gray-300"></div>
+            </div>
+
+            <div class="icon flex gap-5 mt-7">
+                <div class="icon-1 text-xl text-white bg-black px-3 py-2 rounded-full"><i
+                        class="fa-brands fa-google"></i>
+                </div>
+                <div class="icon-2 text-xl text-white bg-black px-3 py-2 rounded-full"><i
+                        class="fa-brands fa-x-twitter"></i>
+                </div>
+                <div class="icon-3 text-xl text-white bg-black px-4 py-2 rounded-full"><i
+                        class="fa-brands fa-facebook-f"></i>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="right-side bg-[#F7F7F7] w-full my-8 mr-8 rounded-3xl pb-10 flex flex-col items-center">
+            <img class="w-[420px] h-[420px] my-6" src="../../assets/images/login -img-1.png" alt="">
+            <p class="right-para text-center text-2xl w-[450px]">Make your work easier and organized with <span
+                    class="font-semibold">Bill App</span></p>
+        </div>
+    </div>
+</section>

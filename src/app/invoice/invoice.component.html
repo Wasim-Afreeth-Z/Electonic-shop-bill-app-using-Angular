@@ -1,0 +1,104 @@
+<section class="py-10 px-36 bg-[#f6f6f6]">
+    <button (click)="back()" class="text-orange-500 text-xl mb-2"><span><i
+                class="fa-regular fa-arrow-left mr-2"></i></span> Back</button>
+    <div class="bg-white shadow-[0px_0px_30px_20px_#00000024]">
+        <div class="relative header">
+            <div
+                class="header-left flex items-center pl-14 pr-52 rounded-r-full bg-slate-900 text-white absolute top-0 bottom-0">
+                <img class="w-9 h-9 mr-2" src="../../assets/images/pos logo.png" alt="">
+                <h1 class="text-[25px] font-semibold">Electronic Shop</h1>
+            </div>
+            <h1 class="text-[60px] py-3 text-right w-full pr-14 bg-orange-500 text-white font-semibold">INVOICE</h1>
+        </div>
+
+
+        <div class="product-list overflow-y-scroll max-h-[400px] mx-14 pt-10">
+            <table class="w-full min-w-[550px]">
+                <thead class="w-full sticky top-0 bg-slate-100 ml-2">
+                    <th class="bg-orange-500 text-start pl-5">Product</th>
+                    <th class="bg-slate-900">Price</th>
+                    <th class="bg-slate-900">QTY.</th>
+                    <th class="bg-slate-900 text-end pr-5">Total</th>
+                </thead>
+                <tbody>
+                    @for (invoice of invoices; track $index) {
+                    <tr class=" border-b-2 border-[#e5e7eb]">
+                        <td class="pl-5">{{invoice.modelName}}</td>
+                        <td class="text-center">₹ {{invoice.sellingPrice|number:'5.0-0'}}</td>
+                        <td class="text-center">{{invoice.q}}</td>
+                        <td class="text-end pr-5">₹ {{eachProductPrice(invoice)|number:'5.0-0'}}</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="amount px-14 ">
+            <div class="flex justify-end">
+                <div class="w-[400px] flex justify-between font-medium  py-[13px] border-b-2">
+                    <p class="pl-4">Subtotal:</p>
+                    <p class="pr-5">₹ {{subTotal()|number:'5.0-0'}}</p>
+                </div>
+            </div>
+            <div class="flex justify-end">
+                <div class="w-[400px] flex justify-between font-medium  py-[13px] ">
+                    <p class="pl-4">Tax(18%):</p>
+                    <p class="pr-5">₹ {{tax()|number:'5.0-0'}}</p>
+                </div>
+            </div>
+            <div class="flex justify-end ">
+                <div class="w-[400px] bg-orange-500 flex justify-between font-medium  py-[13px]">
+                    <p class="pl-4">Total:</p>
+                    <p class="pr-5">₹ {{total()|number:'5.0-0'}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="flex justify-end mx-14">
+            <table class="w-[400px]">
+                <tbody>
+                    <tr class=" border-b-2 border-[#e5e7eb] font-medium">
+                        <td class="pl-4">Subtotal:</td>
+                        <td class="text-center"></td>
+                        <td class="text-end pr-5">20,000</td>
+                    </tr>
+                    <tr class="font-medium">
+                        <td class="pl-4">Tax(18%):</td>
+                        <td class="text-center"></td>
+                        <td class="text-end pr-5">2000</td>
+                    </tr>
+                    <tr class=" font-medium bg-orange-500">
+                        <td class="pl-4">Total:</td>
+                        <td class="text-center"></td>
+                        <td class="text-end pr-5">20,000</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div> -->
+        <!-- <div class="terms max-w-[620px] mt-3 mb-10 px-14">
+                <h2 class="font-medium text-orange-500 text-xl">Terms & conditions</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita magni hic sed blanditiis officia
+                    in nobis repellat voluptas facere nam, dignissimos obcaecati veniam laudantium</p>
+            </div> -->
+
+        <div class="thank flex justify-between items-center w-full mt-16">
+            <div
+                class="thank-left text-nowrap text-white bg-slate-900 rounded-tr-full pl-14 py-6 w-[600px] flex gap-x-6">
+                <p class="flex items-center text-[14px]"><span class="text-[25px]  text-orange-500 mr-2"><i
+                            class="fa-light fa-circle-phone"></i></span> +91-9345830287</p>
+                <p class="flex items-center text-[14px]"><span class="text-[25px]  text-orange-500 mr-2"><i
+                            class="fa-light fa-circle-envelope"></i></span> electonic&commat;gmail.com</p>
+                <p class="flex items-center text-[14px]"><span class="text-[25px]  text-orange-500 mr-2"><i
+                            class="fa-light fa-location-dot"></i></span> Karaikal</p>
+            </div>
+            <p class="thank-right pr-14 mx-5 text-nowrap font-semibold">Thank You For Your Purchase</p>
+        </div>
+    </div>
+    <div class=" flex gap-x-2 mt-6">
+        <button (click)="cancel()"
+            class="disabled:bg-orange-300 text-[14px] font-medium hover:bg-orange-400 bg-orange-500 text-white px-1 py-3 w-full rounded-lg"><i
+                class="fa-regular fa-file-slash mr-2"></i> Cancel</button>
+        <button (click)="printRecipt()"
+            class="text-[14px] font-medium hover:bg-green-400 bg-green-500 text-white px-1 py-3 w-full rounded-lg"><i
+                class="fa-light fa-receipt mr-2"></i> Print Reciept</button>
+    </div>
+</section>

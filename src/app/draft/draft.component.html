@@ -1,0 +1,85 @@
+<main class="flex h-full">
+    <app-side-bar #sidebar class="side-bar"></app-side-bar>
+    <section class="draft-box bg-[#f6f6f6] w-full px-9 pb-12 overflow-y-scroll">
+        <div class="header sticky bg-[#f6f6f6] top-0 pt-12 pb-7 w-full">
+            <div class="hidden product-header mb-2">
+                <h1 class="text-2xl font-medium">Welcome,</h1>
+                <div class="text-2xl" (click)="sidebar.openSidebar()"><i class={{sidebar.menuIcon}}></i></div>
+            </div>
+            <div class="product-header-2 ">
+                <h1 class="text-2xl font-medium mb-2">Welcome,</h1>
+                <p class="text-gray-400 text-sm">Discover whatever you need easily</p>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-8">
+            @if (drafts.length > 0) {
+            @for (draft of drafts; track $index) {
+            <div class="draft bg-white w-[500px] p-4 rounded-lg flex flex-col justify-between">
+                <div>
+                    <!-- <h1 class="font-medium mb-2">Wasim afreeth</h1> -->
+                    <div class="overflow-y-scroll max-h-[200px]">
+                        <table class="text-left w-full min-w-[450px]">
+                            <thead class="font-thin text-gray-600">
+                                <th class="font-medium underline">Product name</th>
+                                <th class="font-medium underline">quantity</th>
+                                <th class="font-medium underline">price</th>
+                                <th class="font-medium underline">Total</th>
+                            </thead>
+                            <tbody class="text-nowrap">
+                                <tr class="text-gray-500 font-normal">
+                                    <td>{{draft.modelName}}</td>
+                                    <td>{{draft.q}}</td>
+                                    <td>₹ {{draft.sellingPrice|number:'5.0-0'}}</td>
+                                    <td>₹ {{eachProductPrice(draft)|number:'5.0-0'}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class=" flex gap-x-2 mt-3">
+                    <button (click)="resumeDraft(draft,$index)"
+                        class="text-[14px] font-medium  text-green-500 border-green-500 border-2 hover:bg-green-500 hover:text-white px-1 py-2 w-full rounded-lg"><i
+                            class="fa-light fa-circle-arrow-right"></i> Resume</button>
+                    <button (click)="removeDraft($index)"
+                        class="text-[14px] font-medium text-orange-500 border-orange-500 border-2  hover:bg-orange-500 hover:text-white px-1 py-2 w-full rounded-lg"><i
+                            class="fa-regular fa-trash"></i> Remove</button>
+                </div>
+            </div>
+            }}@else{
+                <p class="italic">Draft is empty......</p>
+                }
+
+            <!-- <div class="draft bg-white w-[500px] p-4 rounded-lg flex flex-col justify-between">
+                <h1 class="font-medium mb-2">Wasim afreeth</h1>
+                <div class="flex flex-col gap-y-1">
+                    <div class="text-gray-500 font-normal flex justify-between">
+                        <p>Find indoor and outdoor lighting</p>
+                        <div class="flex gap-x-7">
+                            <p>Q: 4</p>
+                            <p>₹ 22,972.73</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-500 font-normal flex justify-between">
+                        <p>Find indoor </p>
+                        <div class="flex gap-x-7">
+                            <p>Q: 4</p>
+                            <p>₹ 22,972</p>
+                        </div>
+                    </div>
+                </div>
+                <div class=" flex gap-x-2 mt-3">
+                    <button
+                        class="text-[14px] font-medium  text-green-500 border-green-500 border-2 hover:bg-green-500 hover:text-white px-1 py-2 w-full rounded-lg"><i
+                            class="fa-light fa-circle-arrow-right"></i> Resume</button>
+                    <button
+                        class="text-[14px] font-medium text-orange-500 border-orange-500 border-2  hover:bg-orange-500 hover:text-white px-1 py-2 w-full rounded-lg"><i
+                            class="fa-regular fa-trash"></i> Remove</button>
+                </div>
+            </div> -->
+
+
+
+        </div>
+    </section>
+</main>

@@ -1,0 +1,45 @@
+@media (max-width: 730px) {
+    .product-header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .product-header-2 {
+        h1 {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header{
+        padding-top: 30px;
+    }
+    .draft-box {
+        padding-bottom: 30px;
+        padding-inline: 25px;
+    }
+
+}
+
+@media (max-width: 570px) {
+    .side-bar {
+        position: absolute;
+        height: 100%;
+        left: 0;
+        z-index: 20;
+    }
+}
+
+@media (max-width: 550px) {
+    .draft{
+        width: 350px;
+    }
+}
+
+@media (max-width: 400px) {
+    .draft{
+        width: 265px;
+    }
+}
