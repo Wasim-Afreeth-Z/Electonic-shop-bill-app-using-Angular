@@ -20,17 +20,9 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      userName: [null, [Validators.required, Validators.email, this.noSpaceAllowed]],
+      userName: [null, [Validators.required, Validators.email]],
       password: [null, Validators.required],
     })
-  }
-
-  noSpaceAllowed(control: AbstractControl) {
-    if (control.value != null && control.value.indexOf(' ') != -1) {
-      return { noSpaceAllowed: true }
-    } else {
-      return null
-    }
   }
 
   isSubmitted: boolean = false

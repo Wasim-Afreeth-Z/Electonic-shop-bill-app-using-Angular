@@ -16,11 +16,8 @@
                 @if(loginForm.get('userName')?.hasError('required')){
                 <p class="text-red-500 text-sm ml-5">Enter the Username !</p>
                 }
-                @if(loginForm.get('userName')?.hasError('userName')){
+                @if(loginForm.get('userName')?.hasError('email')){
                 <p class="text-red-500 text-sm ml-5">Enter correct Format Username !</p>
-                }
-                @if(loginForm.get('userName')?.hasError('noSpaceAllowed')){
-                <p class="text-red-500 text-sm ml-5">Space not allowed</p>
                 }
                 }
                 <div class="relative">
