@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class DraftService {
 
-  drafts: any[]=[]
+  // drafts: any[]=[]
 
 
-  getResume(draft: any) {
-    this.drafts.push(draft)
-    console.log(this.drafts);
+  // getResume(draft: any) {
+  //   this.drafts.push(draft)
+  //   console.log(this.drafts);
 
-  }
+  // }
 }

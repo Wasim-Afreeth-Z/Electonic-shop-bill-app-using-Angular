@@ -9,9 +9,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
-    { path: 'productlist', component: ProductListComponent },
-    { path: 'pos', component: POSComponent },
-    { path: 'draft', component: DraftComponent },
-    { path: 'invoice', component: InvoiceComponent },
+    { path: 'productlist', component: ProductListComponent, canActivate: [canActivateGuard] },
+    { path: 'pos', component: POSComponent, canActivate: [canActivateGuard] },
+    { path: 'draft', component: DraftComponent, canActivate: [canActivateGuard] },
+    { path: 'invoice', component: InvoiceComponent, canActivate: [canActivateGuard] },
 ];
 // , canActivate: [canActivateGuard]

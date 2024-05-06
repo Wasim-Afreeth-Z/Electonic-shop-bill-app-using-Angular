@@ -19,7 +19,7 @@ import { DraftService } from '../service/draft.service';
 export class POSComponent {
 
   commonService = inject(CommanService)
-  draftService = inject(DraftService)
+  // draftService = inject(DraftService)
   route = inject(Router)
   snackBar = inject(MatSnackBar)
   activateroute = inject(ActivatedRoute)
