@@ -23,7 +23,7 @@ export class DraftComponent {
     this.draftStorage = JSON.parse(localStorage.getItem('draft')!) || []
     // console.log(this.draftStorage);
     this.drafts.push(...this.draftStorage)
-    console.log(this.drafts);
+    // console.log(this.drafts);
 
 
     // const draftDisplay: any[] = []

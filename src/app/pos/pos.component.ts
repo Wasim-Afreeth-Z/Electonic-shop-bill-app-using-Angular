@@ -29,7 +29,7 @@ export class POSComponent {
     // this.cart = JSON.parse(localStorage.getItem('cart')!) || []
 
     this.draftStorage = history.state
-    console.log(this.draftStorage);
+    // console.log(this.draftStorage);
 
     if (this.draftStorage.drafts != undefined) {
       this.cart = this.draftStorage.drafts?.draft
@@ -38,7 +38,6 @@ export class POSComponent {
     this.customername = this.draftStorage.drafts?.customerName
     this.customerid = this.draftStorage.drafts?.customerId;
 
-    // this.draftToCart()
     // this.customername = JSON.parse(localStorage.getItem('customername')!)
     // this.customerid = JSON.parse(localStorage.getItem('customerid')!)
     // console.log(this.customername);
@@ -49,12 +48,6 @@ export class POSComponent {
     //   this.cart.push(this.draftStorage)
     //   localStorage.setItem('cart', JSON.stringify(this.cart))
     // }
-  }
-
-  draftToCart(): void {
-
-
-
   }
 
   productpos: any[] = []
