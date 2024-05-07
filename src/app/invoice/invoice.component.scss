@@ -8,6 +8,23 @@ td {
     padding-block: 13px;
 }
 
+@media (min-width: 2000px) {
+    .header-left{
+        padding-right: 500px !important;
+    }
+}
+@media (min-width: 1900px) {
+    .header-left{
+        padding-right: 400px !important;
+    }
+}
+
+@media (min-width: 1800px) {
+    .header-left{
+        padding-right: 350px;
+    }
+}
+
 @media (max-width: 1200px) {
     section {
         padding-inline: 100px;
@@ -43,6 +60,9 @@ td {
         }
     }
     .product-list{
+        margin-inline:40px;
+    }
+    .detail{
         margin-inline:40px;
     }
     .amount{
@@ -100,6 +120,9 @@ td {
         }
     }
     .product-list{
+        margin-inline:30px;
+    }
+    .detail{
         margin-inline:30px;
     }
     .amount{
@@ -162,6 +185,9 @@ td {
     }
 
     .product-list{
+        margin-inline:20px;
+    }
+    .detail{
         margin-inline:20px;
     }
     .amount{

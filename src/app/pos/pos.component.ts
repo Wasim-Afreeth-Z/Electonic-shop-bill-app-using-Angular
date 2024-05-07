@@ -7,7 +7,6 @@ import { CommonModule } from '@angular/common';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DraftService } from '../service/draft.service';
 
 @Component({
   selector: 'app-pos',
@@ -19,30 +18,42 @@ import { DraftService } from '../service/draft.service';
 export class POSComponent {
 
   commonService = inject(CommanService)
-  // draftService = inject(DraftService)
   route = inject(Router)
   snackBar = inject(MatSnackBar)
   activateroute = inject(ActivatedRoute)
-
 
   ngOnInit() {
     this.productPOS()
     this.categoryList()
     this.customerList()
-    this.cart = JSON.parse(localStorage.getItem('cart')!) || []
+    // this.cart = JSON.parse(localStorage.getItem('cart')!) || []
 
-    this.draftStorage = history.state.drafts
-    // console.log(this.draftStorage);
-    if (this.draftStorage != null) {
-      this.cart.push(this.draftStorage)
+    this.draftStorage = history.state
+    console.log(this.draftStorage);
+
+    if (this.draftStorage.drafts != undefined) {
+      this.cart = this.draftStorage.drafts?.draft
       localStorage.setItem('cart', JSON.stringify(this.cart))
     }
+    this.customername = this.draftStorage.drafts?.customerName
+    this.customerid = this.draftStorage.drafts?.customerId;
 
-    // if (this.draftService.drafts!=null) {
-    // this.cart.push(this.draftService.drafts)
+    // this.draftToCart()
+    // this.customername = JSON.parse(localStorage.getItem('customername')!)
+    // this.customerid = JSON.parse(localStorage.getItem('customerid')!)
+    // console.log(this.customername);
+
+    // this.draftStorage = history.state.drafts
+    // // console.log(this.draftStorage);
+    // if (this.draftStorage != null) {
+    //   this.cart.push(this.draftStorage)
+    //   localStorage.setItem('cart', JSON.stringify(this.cart))
     // }
-    // localStorage.setItem('cart', JSON.stringify(this.cart))
-    // console.log(this.cart);
+  }
+
+  draftToCart(): void {
+
+
 
   }
 
@@ -50,7 +61,9 @@ export class POSComponent {
   categorylist: any[] = []
   customerlist: any[] = []
   cart: any[] = []
-  draftStorage: any[] = []
+  draftStorage: any;
+  customername: string | null = null
+  customerid: string | null = null
 
   categoryId: any = null
   search: string | null = null
@@ -143,6 +156,8 @@ export class POSComponent {
     )
   }
 
+  customerlist2: string[] = ['Wasim Afreeth', 'Abdul', 'Farvez']
+
 
   // !add to cart
   addtoCart(product: any): void {
@@ -173,14 +188,18 @@ export class POSComponent {
 
   removeAllCart() {
     this.cart = []
+    this.customername = null
+    this.customerid = null
     localStorage.removeItem('cart')
   }
 
   // !calculation
   subTotal() {
-    return this.cart.reduce((acc, product) => {
-      return acc + product.sellingPrice * product.q
-    }, 0)
+    if (this.cart != undefined || this.cart != null) {
+      return this.cart.reduce((acc, product) => {
+        return acc + product.sellingPrice * product.q
+      }, 0)
+    }
   }
 
   tax() {
@@ -194,22 +213,32 @@ export class POSComponent {
   // !draft
 
   holdOrder() {
-    const drafts = JSON.parse(localStorage.getItem('draft')!) || [];
-    const draft = {
-      // customerId: this.customerlist,
-      // customerName: this.customerlist,
-      draft: this.cart
-    }
+    if (this.customername == null || this.customername == undefined || this.customerid == null || this.customerid == undefined) {
+      this.snackBar.open('Enter Customer Feild', '!!!', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      })
+    } else {
+      const drafts = JSON.parse(localStorage.getItem('draft')!) || [];
+      const draft = {
+        customerId: this.customerid,
+        customerName: this.customername,
+        draft: this.cart
+      }
 
-    drafts.push(draft);
-    localStorage.setItem('draft', JSON.stringify(drafts));
-    localStorage.removeItem('cart')
-    this.route.navigateByUrl('draft')
-    this.snackBar.open('Order was Holded', 'Hold!', {
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-      duration: 3000
-    })
+      drafts.push(draft);
+      localStorage.setItem('draft', JSON.stringify(drafts));
+      localStorage.removeItem('cart')
+      localStorage.removeItem('customername')
+      localStorage.removeItem('customerid')
+      this.route.navigateByUrl('draft')
+      this.snackBar.open('Order was Holded', 'Hold!', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      })
+    }
 
     // localStorage.setItem('draft', JSON.stringify(this.cart));
     // localStorage.removeItem('cart')
@@ -218,8 +247,19 @@ export class POSComponent {
 
 
   proceed(): void {
-    localStorage.setItem('invoice', JSON.stringify(this.cart))
-    this.route.navigateByUrl('invoice')
+    if (this.customername == null || this.customername == undefined || this.customerid == null || this.customerid == undefined) {
+      this.snackBar.open('Enter Customer Name', '!!!', {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 3000
+      })
+    } else {
+      localStorage.setItem('invoice', JSON.stringify(this.cart))
+      localStorage.setItem('customername', JSON.stringify(this.customername))
+      localStorage.setItem('customerid', JSON.stringify(this.customerid))
+      localStorage.removeItem('cart')
+      this.route.navigateByUrl('invoice')
+    }
   }
 
 

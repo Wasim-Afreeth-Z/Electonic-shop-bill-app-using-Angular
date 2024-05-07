@@ -21,17 +21,17 @@
                     <div class="overflow-y-scroll max-h-[200px]">
                         <table class="text-left w-full min-w-[450px]">
                             <thead class="font-thin text-gray-600">
-                                <th class="font-medium underline">Product name</th>
-                                <th class="font-medium underline">quantity</th>
-                                <th class="font-medium underline">price</th>
-                                <th class="font-medium underline">Total</th>
+                                <th class="font-medium underline">Customer Name</th>
+                                <th class="font-medium underline">Customer Id</th>
+                                <th class="font-medium underline">Total Product</th>
+                                <!-- <th class="font-medium underline">Total</th> -->
                             </thead>
                             <tbody class="text-nowrap">
                                 <tr class="text-gray-500 font-normal">
-                                    <td>{{draft.modelName}}</td>
-                                    <td>{{draft.q}}</td>
-                                    <td>₹ {{draft.sellingPrice|number:'5.0-0'}}</td>
-                                    <td>₹ {{eachProductPrice(draft)|number:'5.0-0'}}</td>
+                                    <td>{{draft.customerName|titlecase}}</td>
+                                    <td>#{{draft.customerId}}</td>
+                                    <td>{{draft.draft.length}}</td>
+                                    <!-- <td>₹ {{eachProductPrice(draft)|number:'5.0-0'}}</td> -->
                                 </tr>
                             </tbody>
                         </table>

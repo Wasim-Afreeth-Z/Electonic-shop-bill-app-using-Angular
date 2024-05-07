@@ -16,9 +16,13 @@ export class InvoiceComponent {
   snackBar = inject(MatSnackBar)
 
   invoices: any[] = []
+  customername: string | null = null
+  customerid: string | null = null
 
   ngOnInit(): void {
     this.invoices = JSON.parse(localStorage.getItem('invoice')!) || []
+    this.customername = JSON.parse(localStorage.getItem('customername')!) 
+    this.customerid = JSON.parse(localStorage.getItem('customerid')!) 
   }
 
   eachProductPrice(invoice: any) {

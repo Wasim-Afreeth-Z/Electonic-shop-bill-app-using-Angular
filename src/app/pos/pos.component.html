@@ -1,8 +1,8 @@
 <main class="flex h-full">
     <app-side-bar #sidebar class="side-bar"></app-side-bar>
 
-    <section class="product-box w-full bg-[#f6f6f6] px-9 pb-12 overflow-y-scroll">
-        <div class="header flex items-center justify-between sticky top-0 bg-[#f6f6f6] z-10 pt-12 pb-10">
+    <section class="product-box w-full bg-[#f6f6f6] pb-12 overflow-y-scroll">
+        <div class="header px-9 flex items-center justify-between sticky top-0 bg-[#f6f6f6] z-10 pt-12 pb-10">
             <div class="hidden product-header mb-2">
                 <h1 class="text-2xl font-medium">Welcome,</h1>
                 <div class="text-2xl" (click)="sidebar.openSidebar()"><i class={{sidebar.menuIcon}}></i></div>
@@ -16,12 +16,12 @@
                 placeholder="Search product..." [(ngModel)]="search" (input)="searchFilter($event)">
         </div>
         <!-- category filter -->
-        <div>
-            <div class="category flex items-center mb-6 ">
+        <div class="product-category px-9">
+            <div class="category flex items-center mb-6">
                 @if (categoryId!=null) {
-                    <div (click)="clearCategoryFilter()" class="mr-3 text-2xl text-gray-400 hover:text-red-600"><i
-                            class="fa-sharp fa-solid fa-circle-xmark"></i></div>
-                    }
+                <div (click)="clearCategoryFilter()" class="mr-3 text-2xl text-gray-400 hover:text-red-600"><i
+                        class="fa-sharp fa-solid fa-circle-xmark"></i></div>
+                }
                 @for (category of categorylist; track $index) {
                 <button type="button" (click)="filterCategory(category.id)"
                     class="bg-white text-nowrap hover:bg-orange-500 hover:text-white focus:bg-orange-500  focus:text-white font-normal px-4 py-1.5 rounded-md mr-5">
@@ -29,15 +29,15 @@
                 }
             </div>
             <!-- product list -->
-            <div class="product-list grid grid-cols-3 gap-x-10 gap-y-10 justify-between">
+            <div class="product-list flex flex-wrap gap-x-10 gap-y-10">
                 @for (product of productpos; track $index) {
-                <div class="bg-white p-3 rounded-lg relative w-[250px]">
+                <div (click)="addtoCart(product)" class="bg-white p-3 rounded-lg relative w-[250px]">
                     <img class="w-full h-[160px] rounded-md"
                         src="../../assets/images/pos product image/image_not_available.png" alt="">
-                    <button (click)="addtoCart(product)"
+                    <!-- <button 
                         class="absolute top-5 right-5 bg-white bg-opacity-75 disabled:text-orange-300 text-orange-500 hover:text-white hover:bg-orange-500 hover:bg-opacity-75 px-2 pt-1.5 pb-0.5 rounded-md">
                         <i class="fa-regular fa-cart-shopping"></i>
-                    </button>
+                    </button> -->
                     <div>
                         <h1 class="font-medium pt-3.5 pb-2">{{product?.modelName}}</h1>
                         <p class="text-xs text-gray-400">Brand : {{product?.brandName}}</p>
@@ -50,63 +50,73 @@
             </div>
         </div>
     </section>
-    <section class="cart-box w-[500px] pb-12 px-6 overflow-y-scroll ">
-        <div class="cart-header sticky top-0 right-0 bg-white pt-12 pb-4 z-10">
-            <div class="arrow hidden text-2xl" (click)="cartheight()"><i class={{arrowIcon}}></i></div>
-            <div class=" flex justify-between items-center">
+    <section class="cart-box min-w-[348px] pb-12 px-6 overflow-y-scroll relative">
+        <div>
+            <div class="cart-header sticky top-0 right-0 bg-white pt-12 pb-4 z-10">
+                <div class="arrow hidden text-2xl" (click)="cartheight()"><i class={{arrowIcon}}></i></div>
+                <!-- <div class=" flex justify-between items-center"> -->
                 <!-- customer list -->
-                <div>
-                    <mat-form-field>
+
+                <!-- <mat-form-field>
                         <mat-label>Customer list</mat-label>
                         <mat-select>
                             @for (customer of customerlist; track $index) {
                             <mat-option>{{customer.name}}</mat-option>
                             }
                         </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="text-2xl"><i class="fa-solid fa-user"></i></div>
-            </div>
-        </div>
-        <div class="flex flex-col gap-y-3">
-            <!-- overflow-y-scroll max-h-[250px] -->
-            <!-- cart -->
-            @if (cart.length > 0) {
-            @for (addtocart of cart; track $index) {
-            <div class=" bg-[#f6f6f6] rounded-lg px-3 py-2.5">
-                <div class="flex justify-between">
-                    <h1 class="font-medium text-sm mb-3">{{addtocart?.modelName}}</h1>
-                    <div (click)="removeCart($index)" class=" text-base text-gray-400 hover:text-red-600"><i
-                            class="fa-sharp fa-solid fa-circle-xmark"></i></div>
-                </div>
-                <div class="flex justify-between items-center">
-                    <p class="font-medium text-sm  text-orange-500">₹ {{addtocart?.sellingPrice|number:'5.0-0'}}</p>
-                    <div class="flex items-center">
-                        <button [disabled]="addtocart.q <=1" (click)="minus($index)"
-                            class="disabled:bg-orange-300 text-white bg-orange-500 text-[10px]  px-1 h-4 rounded-[4px]"><i
-                                class="fa-solid fa-minus"></i></button>
-                        <p class="px-2 text-sm">{{addtocart?.q}}</p>
-                        <button [disabled]="addtocart.q >=10" (click)="plus($index)"
-                            class="disabled:bg-orange-300 text-white bg-orange-500 text-[10px]  px-1 h-4 rounded-[4px]"><i
-                                class="fa-solid fa-plus"></i></button>
+                    </mat-form-field> -->
+                <div>
+                    <input [(ngModel)]="customername" type="text"
+                        class="border-2 w-full rounded-lg py-1.5 pl-2 outline-none" placeholder="Customer name">
+                    <div class="flex">
+                        <p class="text-gray-400 text-sm font-medium mt-2 ml-2 mr-1 text-nowrap">Customer Id:</p>
+                        <input [(ngModel)]="customerid" type="text"
+                            class="border-b-[1px] h-[18px] text-sm outline-none mt-2 ">
                     </div>
                 </div>
+                <!-- <div class="text-2xl"><i class="fa-solid fa-user"></i></div> -->
+                <!-- </div> -->
+            </div>
+            <div class="flex flex-col gap-y-3 overflow-y-scroll mb-[240px]">
+                <!-- overflow-y-scroll max-h-[250px] -->
+                <!-- cart -->
+                @if (cart.length > 0) {
+                @for (addtocart of cart; track $index) {
+                <div class=" bg-[#f6f6f6] rounded-lg px-3 py-2.5">
+                    <div class="flex justify-between">
+                        <h1 class="font-medium text-sm mb-3">{{addtocart?.modelName}}</h1>
+                        <div (click)="removeCart($index)" class=" text-base text-gray-400 hover:text-red-600"><i
+                                class="fa-sharp fa-solid fa-circle-xmark ml-3"></i></div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <p class="font-medium text-sm  text-orange-500">₹ {{addtocart?.sellingPrice|number:'5.0-0'}}</p>
+                        <div class="flex items-center">
+                            <button [disabled]="addtocart.q <=1" (click)="minus($index)"
+                                class="disabled:bg-orange-300 text-white bg-orange-500 text-[10px]  px-1 h-4 rounded-[4px]"><i
+                                    class="fa-solid fa-minus"></i></button>
+                            <p class="px-2 text-sm">{{addtocart?.q}}</p>
+                            <button [disabled]="addtocart.q >=10" (click)="plus($index)"
+                                class="disabled:bg-orange-300 text-white bg-orange-500 text-[10px]  px-1 h-4 rounded-[4px]"><i
+                                    class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
 
+                </div>
+                }}@else{
+                <p class="italic">Cart is empty......</p>
+                }
+                @if(cart.length > 0){
+                <div class="flex justify-center">
+                    <button (click)="removeAllCart()"
+                        class="bg-red-500 hover:bg-red-300 w-[80px] text-white rounded-full text-[12px] py-1">Remove
+                        all</button>
+                </div>
+                }
             </div>
-            }}@else{
-            <p class="italic">Cart is empty......</p>
-            }
-            @if(cart.length > 0){
-            <div class="flex justify-center">
-                <button (click)="removeAllCart()"
-                    class="bg-red-500 hover:bg-red-300 w-[80px] text-white rounded-full text-[12px] py-1">Remove
-                    all</button>
-            </div>
-            }
         </div>
-
         <!-- bill total -->
-        <div [ngClass]="cart.length>0?'block':'hidden'">
+        <div [ngClass]="cart.length>0?'block':'hidden'"
+            class="fixed bottom-0 w-[295px] right-[30px]  bg-white pb-12 pt-1">
             <div class="bg-[#f6f6f6] rounded-lg mt-6 relative">
                 <div class="px-4 pt-4 pb-3">
                     <div class="flex justify-between mb-[3px]">
@@ -127,17 +137,6 @@
                     </div>
                 </div>
                 <div class="flex gap-x-1 text-[#afadad] text-xs overflow-hidden">
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
-                    <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>
@@ -187,20 +186,28 @@
         class="cart-box-mobile w-[500px] pb-12 px-6 overflow-y-scroll hidden">
         <div class="cart-header sticky top-0 right-0 bg-white pt-12 pb-4 z-10">
             <div class="arrow hidden text-2xl" (click)="cartheight()"><i class={{arrowIcon}}></i></div>
-            <div class=" flex justify-between items-center">
-                <!-- customer list -->
-                <div>
-                    <mat-form-field>
-                        <mat-label>Customer list</mat-label>
-                        <mat-select>
-                            @for (customer of customerlist; track $index) {
-                            <mat-option>{{customer.name}}</mat-option>
-                            }
-                        </mat-select>
-                    </mat-form-field>
+            <!-- <div class=" flex justify-between items-center"> -->
+            <!-- customer list -->
+
+            <!-- <mat-form-field>
+                    <mat-label>Customer list</mat-label>
+                    <mat-select>
+                        @for (customer of customerlist; track $index) {
+                        <mat-option>{{customer.name}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field> -->
+            <div>
+                <input [(ngModel)]="customername" type="text"
+                    class="border-2 w-full rounded-lg py-1.5 pl-2 outline-none" placeholder="Customer name">
+                <div class="flex">
+                    <p class="text-gray-400 text-sm font-medium mt-2 ml-2 mr-1 text-nowrap">Customer Id:</p>
+                    <input [(ngModel)]="customerid" type="text"
+                        class="border-b-[1px] h-[18px] text-sm outline-none mt-2 ">
                 </div>
-                <div class="text-2xl"><i class="fa-solid fa-user"></i></div>
             </div>
+            <!-- <div class="text-2xl"><i class="fa-solid fa-user"></i></div> -->
+            <!-- </div> -->
         </div>
         <div class="flex flex-col gap-y-3">
             <!-- overflow-y-scroll max-h-[250px] -->
@@ -261,6 +268,21 @@
                     </div>
                 </div>
                 <div class="flex gap-x-1 text-[#afadad] text-xs overflow-hidden">
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
+                    <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>
                     <i class="fa-solid fa-minus"></i>

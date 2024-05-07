@@ -26,6 +26,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 48px !important;
     width: 160px !important;
 }
+.mat-mdc-select-placeholder {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {

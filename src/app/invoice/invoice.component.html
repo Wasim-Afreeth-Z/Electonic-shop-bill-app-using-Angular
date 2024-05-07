@@ -1,3 +1,4 @@
+<main class="h-full bg-[#f6f6f6]">
 <section class="py-10 px-36 bg-[#f6f6f6]">
     <button (click)="back()" class="text-orange-500 text-xl mb-2"><span><i
                 class="fa-regular fa-arrow-left mr-2"></i></span> Back</button>
@@ -10,7 +11,11 @@
             </div>
             <h1 class="text-[60px] py-3 text-right w-full pr-14 bg-orange-500 text-white font-semibold">INVOICE</h1>
         </div>
-
+        <div class="mx-14 pt-10 detail">
+            <h1 class="font-medium text-xl text-orange-500">INVOICE TO:</h1>
+            <p class="font-semibold text-2xl">{{customername|titlecase}},</p>
+            <p>Id: #{{customerid}}</p>
+        </div>
 
         <div class="product-list overflow-y-scroll max-h-[400px] mx-14 pt-10">
             <table class="w-full min-w-[550px]">
@@ -93,7 +98,7 @@
             <p class="thank-right pr-14 mx-5 text-nowrap font-semibold">Thank You For Your Purchase</p>
         </div>
     </div>
-    <div class=" flex gap-x-2 mt-6">
+    <div class=" flex gap-x-2 mt-6 ">
         <button (click)="cancel()"
             class="disabled:bg-orange-300 text-[14px] font-medium hover:bg-orange-400 bg-orange-500 text-white px-1 py-3 w-full rounded-lg"><i
                 class="fa-regular fa-file-slash mr-2"></i> Cancel</button>
@@ -102,3 +107,4 @@
                 class="fa-light fa-receipt mr-2"></i> Print Reciept</button>
     </div>
 </section>
+</main>

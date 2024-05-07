@@ -3,7 +3,6 @@ import { SideBarComponent } from '../side-bar/side-bar.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { DraftService } from '../service/draft.service';
 
 @Component({
   selector: 'app-draft',
@@ -16,27 +15,30 @@ export class DraftComponent {
 
   route = inject(Router)
   snackBar = inject(MatSnackBar)
-  draftservice = inject(DraftService)
 
   draftStorage: any[] = []
   drafts: any[] = []
 
   ngOnInit(): void {
-    const draftDisplay: any[] = []
     this.draftStorage = JSON.parse(localStorage.getItem('draft')!) || []
     // console.log(this.draftStorage);
-    this.draftStorage.forEach((element, index, array) => {
-      // console.log(...element.draft);
-      if (element.draft != null) {
-        draftDisplay.push(...element?.draft)
-      }
-    })
-    // console.log(draftDisplay);
-    this.drafts = draftDisplay
-    // console.log(this.drafts);
-    if (draftDisplay.length === 0) {
-      this.drafts = this.draftStorage
-    }
+    this.drafts.push(...this.draftStorage)
+    console.log(this.drafts);
+
+
+    // const draftDisplay: any[] = []
+    // this.draftStorage = JSON.parse(localStorage.getItem('draft')!) || []
+    // this.draftStorage.forEach((element, index, array) => {
+    //   if (element.draft != null) {
+    //     draftDisplay.push(...element?.draft)
+    //   }
+    // })
+    // this.drafts = draftDisplay
+    // if (draftDisplay.length === 0) {
+    //   this.drafts = this.draftStorage
+    // }
+
+
     // this.drafts.push(...JSON.parse(localStorage.getItem('draft')!) || [])
   }
 
@@ -47,8 +49,8 @@ export class DraftComponent {
 
   resumeDraft(draft: any, index: number): void {
     this.route.navigate(['pos'], { state: { drafts: draft } });
-    this.drafts.splice(index, 1)
-    localStorage.setItem('draft', JSON.stringify(this.drafts))
+    // this.drafts.splice(index, 1)
+    // localStorage.setItem('draft', JSON.stringify(this.drafts))
     this.snackBar.open('Order is Resume', 'Resume', {
       horizontalPosition: 'center',
       verticalPosition: 'top',

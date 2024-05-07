@@ -12,7 +12,7 @@
                         <div class="category ml-3 flex items-center">
                             <mat-form-field>
                                 <mat-label>Catagory</mat-label>
-                                <mat-select [(ngModel)]="categoryId" (valueChange)="filterCategory($event)">
+                                <mat-select placeholder="Select Category" [(ngModel)]="categoryId" (valueChange)="filterCategory($event)">
                                     @for (category of categorylist; track $index) {
                                     <mat-option [value]="category.id">{{category.name}}</mat-option>
                                     }
@@ -29,7 +29,7 @@
                         <div class="brand ml-3 flex items-center">
                             <mat-form-field>
                                 <mat-label>Brand</mat-label>
-                                <mat-select [(ngModel)]="brandId" (valueChange)="filterBrand($event)">
+                                <mat-select placeholder="Select Brand" [(ngModel)]="brandId" (valueChange)="filterBrand($event)">
                                     @for (brand of brandlist; track $index) {
                                     <mat-option [value]="brand.id">{{brand.name}}</mat-option>
                                     }

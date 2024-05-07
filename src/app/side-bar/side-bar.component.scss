@@ -8,7 +8,8 @@
         width: 80px;
 
         img {
-            padding: 10px;
+            width: 35px;
+            height: 35px;
         }
     }
 }
@@ -17,23 +18,25 @@
     .side-bar {
         display: none;
     }
-.side-bar-mobile-main{
-    display: block;
-}
+
+    .side-bar-mobile-main {
+        display: block;
+    }
+
     .side-bar-mobile {
+        width: 80px;
+
         img {
-            padding: 10px;
+            width: 35px;
+            height: 35px;
         }
     }
 }
 
 
 @media (max-width: 570px) {
-    .side-bar-mobile-main{
-        width: 60px;
-    }
     .side-bar-mobile {
-    
+        width: 60px !important;
 
         .icon-box {
             margin-top: 30px;
@@ -48,8 +51,8 @@
         }
 
         img {
-            padding: 5px;
-            margin-block: 8px;
+            width: 25px;
+            height: 25px;
         }
     }
 
