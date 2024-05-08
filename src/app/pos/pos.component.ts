@@ -149,9 +149,6 @@ export class POSComponent {
     )
   }
 
-  customerlist2: string[] = ['Wasim Afreeth', 'Abdul', 'Farvez']
-
-
   // !add to cart
   addtoCart(product: any): void {
     const index = this.cart.findIndex(item => item.productId === product.productId);  
