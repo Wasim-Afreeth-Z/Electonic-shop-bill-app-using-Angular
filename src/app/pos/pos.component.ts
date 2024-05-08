@@ -83,7 +83,7 @@ export class POSComponent {
         const response = this.commonService.decryptData({ data: res })
         // console.log(response);
         this.productpos = response.result
-        console.log(this.productpos);
+        // console.log(this.productpos);
 
       }
     }
@@ -154,10 +154,7 @@ export class POSComponent {
 
   // !add to cart
   addtoCart(product: any): void {
-    const index = this.cart.findIndex(item => item.sellingPrice === product.sellingPrice);
-    console.log(index);
-    
-    
+    const index = this.cart.findIndex(item => item.productId === product.productId);  
     if (index !== -1) {
       if (this.cart[index].q < 10) {
         this.cart[index].q++;
