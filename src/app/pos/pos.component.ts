@@ -164,6 +164,7 @@ export class POSComponent {
       this.cart.push(product);
     }
     localStorage.setItem('cart', JSON.stringify(this.cart))
+
   }
 
   minus(index: any): void {
