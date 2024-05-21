@@ -253,39 +253,6 @@ export class POSComponent {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // icons: { icon: string}[] = [
-  //   { icon: 'fa-regular fa-lightbulb'},
-  //   { icon: 'fa-sharp fa-regular fa-lamp-desk'},
-  //   { icon: 'fa-regular fa-light-ceiling'},
-  // ]
-
   //! mobile view height cart
   // height: string = '150px'
   arrowIcon: string = "fa-solid fa-angle-up"

@@ -14,13 +14,11 @@ import { CommonModule } from '@angular/common';
 export class SideBarComponent {
 
   // !sidebar mobile view
-  // display: string = 'hidden'
   menuIcon: string = "fa fa-bars"
   menuValue: boolean = true;
 
   openSidebar() {
     this.menuValue = !this.menuValue
-    // this.display = !this.menuValue ? 'block' : 'hidden'
     this.menuIcon = !this.menuValue ? "fa fa-close" : "fa fa-bars";
   }
 
