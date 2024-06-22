@@ -205,7 +205,7 @@ export class POSComponent {
 
   holdOrder() {
     if (this.customername == null || this.customername == undefined || this.customerid == null || this.customerid == undefined) {
-      this.snackBar.open('Enter Customer Feild', '!!!', {
+      this.snackBar.open('Enter Customer Feilds', '!!!', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 3000
@@ -239,7 +239,7 @@ export class POSComponent {
 
   proceed(): void {
     if (this.customername == null || this.customername == undefined || this.customerid == null || this.customerid == undefined) {
-      this.snackBar.open('Enter Customer Name', '!!!', {
+      this.snackBar.open('Enter Customer Feilds', '!!!', {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 3000
