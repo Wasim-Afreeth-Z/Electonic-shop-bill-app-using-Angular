@@ -60,6 +60,7 @@ export class LoginComponent {
       next: (res: any) => {
         // console.log(res);
         const response = this.commonService.decryptData({ data: res })
+        // console.log(response);
         localStorage.setItem('token', response.token)
         localStorage.setItem('userId', response.userId)
         // console.log(response);

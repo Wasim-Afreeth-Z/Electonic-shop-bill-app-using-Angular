@@ -10,7 +10,7 @@ import * as CryptoJS from 'crypto-js';
   providedIn: 'root'
 })
 export class CommanService {
-
+// npm i crypto-js
   // encryption
   encryptData(value: any) {
     return AES.encrypt(
