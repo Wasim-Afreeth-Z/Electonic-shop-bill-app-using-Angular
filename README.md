@@ -1,28 +1,21 @@
 # ElectronicShopPaymentProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+# Backend - Provided By InternShip Company
 
-## Development server
+LOGIN 
+![ElectronicShopPaymentProject-09-26-2024_03_29_PM](https://github.com/user-attachments/assets/632f705f-f880-4315-8704-a7e3e2d452e1)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+PRODUCT LIST
+![ElectronicShopPaymentProject-09-26-2024_03_30_PM](https://github.com/user-attachments/assets/596d0ee5-46df-4185-9717-cc6672e611c8)
 
-## Code scaffolding
+POS SCREEN
+![ElectronicShopPaymentProject-09-26-2024_03_31_PM](https://github.com/user-attachments/assets/72547347-43e0-4a78-a349-d9ad12b9ae57)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ORDER HOLD
+![ElectronicShopPaymentProject-09-26-2024_03_33_PM](https://github.com/user-attachments/assets/7d9b45a7-188b-432f-9720-fc335a01b497)
 
-## Build
+INVOICE
+![ElectronicShopPaymentProject-09-26-2024_03_34_PM](https://github.com/user-attachments/assets/f9910188-570d-42ad-abb7-59bd14af304b)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-"# Electonic-shop-bill-app" 
+    ###### Thank You ######
